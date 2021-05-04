@@ -1,4 +1,7 @@
-﻿using MvcProjeKampi.BusinessLayer.Concrete;
+﻿using FluentValidation.Results;
+using MvcProjeKampi.BusinessLayer.Concrete;
+using MvcProjeKampi.BusinessLayer.ValidationRules;
+using MvcProjeKampi.DataAccessLayer.EntityFramework;
 using MvcProjeKampi.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,7 +14,7 @@ namespace MvcProjeKampi.WebUI.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        CategoryManager cm = new CategoryManager();
+        CategoryManager cm = new CategoryManager(new EfCategoryDal());
 
         public ActionResult Index()
         {
@@ -19,7 +22,7 @@ namespace MvcProjeKampi.WebUI.Controllers
         }
         public ActionResult GetCategoryList()
         {
-            //var categoryvalues = cm.GetAllBL();
+            var categoryvalues = cm.GetList();
             return View(categoryvalues);
         }
         [HttpGet]
@@ -27,14 +30,26 @@ namespace MvcProjeKampi.WebUI.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult AddCategory(Category p)
         {
-            //p.CategoryStatus = true;
-            //p.CategoryDescription = "rin tin tin.";
-           // cm.CategoryAddBL(p);
-            return RedirectToAction("GetCategoryList");
+            CategoryValidator categoryValidator = new CategoryValidator();
+            ValidationResult results = categoryValidator.Validate(p);
+            if (results.IsValid)
+            {
+                cm.CategoryAddBL(p);
+                return RedirectToAction("GetCategoryList");
+            }
+            // cm.CategoryAddBL(p);
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }
