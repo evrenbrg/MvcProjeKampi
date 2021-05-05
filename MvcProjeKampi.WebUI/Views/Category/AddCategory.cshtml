@@ -3,18 +3,20 @@
 <br />
 @using(Html.BeginForm("AddCategory","Category",FormMethod.Post))
             {
-    <div class="form-group">
-       @Html.Label("Kategori Adı")
-        @Html.TextBoxFor(x=> x.CategoryName)
-        @Html.ValidationMessageFor(x=> x.CategoryName)
-        <br /><br />
-        @Html.Label("Açıklama Yazınız")
-        @Html.TextBoxFor(x=> x.CategoryDescription)
-        @Html.ValidationMessageFor(x=> x.CategoryDescription)
-        <br /><br />
-        <button class="btn btn-danger">Kaydet</button>
-
-    </div>
+<div class="form-group">
+    @Html.Label("Kategori Adı")
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryName)
+    <br /><br />
+    @Html.Label("Açıklama Yazınız")
+    @Html.TextBoxFor(x => x.CategoryDescription, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryDescription)
+    <br /><br />
+    @Html.Label("Durum")
+    @Html.CheckBoxFor(x => x.CategoryStatus, new { @class = "form-check-input" })
+    <br /><br />
+    <button class="btn btn-danger">Kaydet</button>
+</div>
             }
 
 

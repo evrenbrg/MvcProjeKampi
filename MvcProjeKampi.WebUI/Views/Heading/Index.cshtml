@@ -1,0 +1,32 @@
+﻿@using MvcProjeKampi.EntityLayer.Concrete
+@model List<Heading>
+
+
+@{
+    ViewBag.Title = "Heading";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Mvc Kamp Heading Tablo Örneği</h3>
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Adı</th>
+        <th>Tarih</th>
+        <th>Kategori</th>
+        <th>Yazan</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.HeadingID</td>
+            <td>@item.HeadingName</td>
+            <td>@item.HeadingDate.ToString("dd.MM.yyyy")</td>
+            <td>@item.Category</td>
+            <td>@item.Writer</td>
+        </tr>
+    }
+</table>
+<a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
+<a href="/Category/GetCategoryList" class="btn btn-warning">Kategori Listesi</a>
+<a href="/Category/AddCategory" class="btn btn-danger">Kategori Açıklamaları</a>
