@@ -21,6 +21,11 @@ namespace MvcProjeKampi.DataAccessLayer.Concrete.Repositories
             c.SaveChanges();
         }
 
+        public Heading Get(Expression<Func<Heading, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(Heading p)
         {
             _object.Add(p);
