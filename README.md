@@ -13,3 +13,4 @@ Murat Yücedağ'ın Katmanlı Mimari ile Mvc 5 kampı konularıyla paralel olara
  5. İstatistik sayfasının ekran görüntüsü  Github reposu içine eklendi. 
  6. Form dolduruldu.
  
+![istatistik](https://user-images.githubusercontent.com/63883433/119481337-41e2fa80-bd5b-11eb-8af1-1465128a9718.PNG)
