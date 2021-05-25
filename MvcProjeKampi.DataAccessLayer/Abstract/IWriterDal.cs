@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MvcProjeKampi.DataAccessLayer.Abstract
 {
-    interface IWriterDal:IRepository<Writer>
+    public interface IWriterDal:IRepository<Writer>
     {
     }
 }
