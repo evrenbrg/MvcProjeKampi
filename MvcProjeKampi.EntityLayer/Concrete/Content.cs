@@ -11,9 +11,12 @@ namespace MvcProjeKampi.EntityLayer.Concrete
     {
         [Key]
         public int ContentID { get; set; }
+        
         [StringLength(1000)]
         public string ContentValue { get; set; }
         public DateTime ContenDate { get; set; }
+
+        public bool ContentStatus { get; set; }
 
         public int HeadingID { get; set; }
         public virtual Heading Heading { get; set; }

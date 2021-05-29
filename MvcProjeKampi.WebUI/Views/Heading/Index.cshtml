@@ -1,32 +1,159 @@
 ﻿@using MvcProjeKampi.EntityLayer.Concrete
 @model List<Heading>
-
-
 @{
-    ViewBag.Title = "Heading";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h3>Mvc Kamp Heading Tablo Örneği</h3>
-<table class="table table-hover">
-    <tr>
-        <th>#</th>
-        <th>Adı</th>
-        <th>Tarih</th>
-        <th>Kategori</th>
-        <th>Yazan</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.HeadingID</td>
-            <td>@item.HeadingName</td>
-            <td>@item.HeadingDate.ToString("dd.MM.yyyy")</td>
-            <td>@item.Category.CategoryName</td>
-            <td>@item.Writer.WriterName</td>
-        </tr>
-    }
-</table>
-<a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
-<a href="/Category/GetCategoryList" class="btn btn-warning">Kategori Listesi</a>
-<a href="/Category/AddCategory" class="btn btn-danger">Kategori Açıklamaları</a>
+@{ string color = "";}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Başlık İşlemleri</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/AdminCategory/">Genel Görünüm</a></li>
+                    <li class="breadcrumb-item active">Başlıklar</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Kayıtlar</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Küçült">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped projects">
+                <thead>
+                    <tr>
+                        <th style="width: 1%">
+                            #
+                        </th>
+                        <th style="width: 35%">
+                            Başlıklar
+                        </th>
+                        <th style="width: 20%">
+                            Oluşturan Yazar
+                        </th>
+                        <th style="width: 10%" class="text-center">
+                            Durum
+                        </th>
+                        <th style="width: 19%" class="text-center">
+                            Kategori
+                        </th>
+                        <th style="width: 15%">
+                            işlemler
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.Category.CategoryName == "Tiyatro")
+                        {
+                            color = "badge badge-warning";
+                        }
+                        if (item.Category.CategoryName == "Yazılım")
+                        {
+                            color = "badge badge-success";
+                        }
+                        if (item.Category.CategoryName == "Film")
+                        {
+                            color = "badge badge-secondary";
+                        }
+                        if (item.Category.CategoryName == "Dizi")
+                        {
+                            color = "badge badge-primary";
+                        }
+
+                        <tr>
+                            <td>
+                                @item.HeadingID
+                            </td>
+                            <td>
+                                <a>
+                                    @item.HeadingName
+                                </a>
+                                <br />
+                                <small>
+                                    @item.HeadingDate.ToString("dd-MMM-yyyy")
+                                </small>
+                            </td>
+                            <td>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <img alt="@item.Writer.WriterName @item.Writer.WriterSurName" class="table-avatar" src="@item.Writer.WriterImage">
+
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                @switch (Convert.ToInt32(item.HeadingStatus))
+                                {
+                                    case 0:<span class="badge badge-danger ">Pasif</span>
+                                        break;
+                                    case 1: <span class="badge  badge-success">Aktif</span>
+                                        break;
+                                }
+
+
+
+
+                            </td>
+                            <td class="project-state">
+                                <span class="@color">@item.Category.CategoryName</span>
+
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    Gör
+                                </a>
+                                <a class="btn btn-info btn-sm" href="/Heading/EditHeading/@item.HeadingID ">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Güncelle
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingID">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+
+
+
+
+
+<a href="/Heading/AddHeading" class="btn btn-danger">Başlık Oluştur</a>

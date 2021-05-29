@@ -1,17 +1,19 @@
 ﻿@model MvcProjeKampi.EntityLayer.Concrete.Writer
 @{
-    ViewBag.Title = "AddWriter";
+    ViewBag.Title = "EditWriter";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h1>Yeni Yazar Ekleme</h1>
 <br />
-@using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
+<h2>Yazar Güncelleme</h2>
+@using (Html.BeginForm("EditWriter", "Writer", FormMethod.Post))
 {
 <div class="form-group">
+    @Html.Label("Yazar Id")
+    @Html.TextBoxFor(x => x.WriterID, new { @class = "form-control" })
+    <br /><br />
     @Html.Label("Yazar Adı")
     @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.WriterName)
+    @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
     <br /><br />
     @Html.Label("Yazar Soyadı")
     @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
@@ -37,6 +39,7 @@
     @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.WriterAbout)
     <br /><br />
-    <button class="btn btn-info">Yazarı Ekle</button>
+    <button class="btn btn-success">Güncelle</button>
 </div>
 }
+

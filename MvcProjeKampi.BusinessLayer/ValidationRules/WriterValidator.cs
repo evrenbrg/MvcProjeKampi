@@ -17,6 +17,7 @@ namespace MvcProjeKampi.BusinessLayer.ValidationRules
             RuleFor(x => x.WriterAbout).NotEmpty().WithMessage("Hakkımda kısmını Boş Geçemezsiniz");
             RuleFor(x => x.WriterSurName).MinimumLength(2).WithMessage("Lütfen en az 2 karakter girişi yapın");
             RuleFor(x => x.WriterSurName).MaximumLength(50).WithMessage("Lütfen 50 karakterten fazla değer  girişi yapmayın");
+            RuleFor(x => x.WriterTitle).MinimumLength(10).WithMessage("Lütfen en az 10 karaktert girişi yapın");
         }
     }
 }
