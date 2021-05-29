@@ -1,0 +1,56 @@
+﻿@using MvcProjeKampi.EntityLayer.Concrete
+@model List<About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Hakkında Veri Listesi</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Aktif Yap</th>
+        <th>Pasif Yap</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.AboutId</td>
+            <td>Başlık</td>
+            <td><button class="btn btn-danger">Aktif</button></td>
+            <td><button class="btn btn-primary">Pasif</button></td>
+        </tr>
+    }
+</table>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1"> Yeni Hakkımızda Yazı Girişi</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Hakkımızda Yazı Girişi</h2>
+            </div>
+            
+            <form method="post" action="/About/AddAbout">
+                <div class="modal-body">
+                    <label>Hakkımızda metin 1</label>
+                    <input type="text" name="AboutDetails1" class="form-control" />
+                    <br />
+                    <label>Hakkımızda metin 2</label>
+                    <input type="text" name="AboutDetails2" class="form-control" />
+                    <br />
+                    <label>Hakkımızda metin 3</label>
+                    <input type="text" name="AboutImage1" class="form-control" />
+                    <br />
+                    <label>Hakkımızda metin 4</label>
+                    <input type="text" name="AboutImage2" class="form-control" />
+                    <br />
+                    <button class="btn btn-danger">Kaydet</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
