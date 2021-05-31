@@ -29,5 +29,9 @@ namespace MvcProjeKampi.WebUI.Controllers
             am.AboutAddBL(p);
             return RedirectToAction("Index");
         }
+        public PartialViewResult AboutPartial()
+        {
+            return PartialView();
+        }
     }
 }
