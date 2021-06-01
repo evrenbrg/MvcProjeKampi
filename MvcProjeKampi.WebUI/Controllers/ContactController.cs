@@ -20,5 +20,21 @@ namespace MvcProjeKampi.WebUI.Controllers
             var contactValues = cm.GetList();
             return View(contactValues);
         }
+        public ActionResult GetContactDetails(int id)
+        {
+            if(id!=null)
+            { 
+            var contactValues = cm.GetById(id);
+            return View(contactValues);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+        public PartialViewResult MenuPartial()
+        {
+            return PartialView();
+        }
     }
 }
