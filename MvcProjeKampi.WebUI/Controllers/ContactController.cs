@@ -22,15 +22,8 @@ namespace MvcProjeKampi.WebUI.Controllers
         }
         public ActionResult GetContactDetails(int id)
         {
-            if(id!=null)
-            { 
             var contactValues = cm.GetById(id);
             return View(contactValues);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
         }
         public PartialViewResult MenuPartial()
         {

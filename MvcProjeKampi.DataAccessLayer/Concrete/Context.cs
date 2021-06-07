@@ -16,5 +16,6 @@ namespace MvcProjeKampi.DataAccessLayer.Concrete
         public DbSet<Content> Content { get; set; }
         public DbSet<Heading> Heading { get; set; }
         public DbSet<Writer> Writer { get; set; }
+        public DbSet<Message> Message { get; set; }
     }
 }

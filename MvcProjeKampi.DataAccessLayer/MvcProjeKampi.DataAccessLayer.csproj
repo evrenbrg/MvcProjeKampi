@@ -56,6 +56,7 @@
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
     <Compile Include="Abstract\IHeadingDal.cs" />
+    <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfContentDal.cs" />
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
+    <Compile Include="EntityFramework\EfMessageDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202104281004061_mig01.cs" />
     <Compile Include="Migrations\202104281004061_mig01.designer.cs">
@@ -96,6 +98,18 @@
     <Compile Include="Migrations\202105291422430_mig_headingStatusAdd.cs" />
     <Compile Include="Migrations\202105291422430_mig_headingStatusAdd.designer.cs">
       <DependentUpon>202105291422430_mig_headingStatusAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106011012395_mig_add_message_class.cs" />
+    <Compile Include="Migrations\202106011012395_mig_add_message_class.designer.cs">
+      <DependentUpon>202106011012395_mig_add_message_class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106041647039_message_istrue.cs" />
+    <Compile Include="Migrations\202106041647039_message_istrue.designer.cs">
+      <DependentUpon>202106041647039_message_istrue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106070541241_contactdate.cs" />
+    <Compile Include="Migrations\202106070541241_contactdate.designer.cs">
+      <DependentUpon>202106070541241_contactdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,6 +145,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105291422430_mig_headingStatusAdd.resx">
       <DependentUpon>202105291422430_mig_headingStatusAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106011012395_mig_add_message_class.resx">
+      <DependentUpon>202106011012395_mig_add_message_class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106041647039_message_istrue.resx">
+      <DependentUpon>202106041647039_message_istrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106070541241_contactdate.resx">
+      <DependentUpon>202106070541241_contactdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
