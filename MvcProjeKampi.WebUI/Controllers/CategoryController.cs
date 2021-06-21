@@ -32,13 +32,13 @@ namespace MvcProjeKampi.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCategory(Category p)
+        public ActionResult AddCategory(Category category)
         {
             CategoryValidator categoryValidator = new CategoryValidator();
-            ValidationResult results = categoryValidator.Validate(p);
+            ValidationResult results = categoryValidator.Validate(category);
             if (results.IsValid)
             {
-                cm.CategoryAddBL(p);
+                cm.CategoryAddBL(category);
                 return RedirectToAction("GetCategoryList");
             }
             // cm.CategoryAddBL(p);

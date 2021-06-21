@@ -14,17 +14,23 @@ namespace MvcProjeKampi.WebUI.Controllers
     public class MessageController : Controller
     {
         // GET: Message
-        MessageManager mc = new MessageManager(new EfMessageDal());
+        MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messageValidator = new MessageValidator();
+        [Authorize]
         public ActionResult Inbox()
         {
-            var messagelist = mc.GetListInbox();
+            var messagelist = messageManager.GetListInbox();
             return View(messagelist);
         }
         public ActionResult Sendbox()
         {
-            var messageList = mc.GetListSendbox();
+            var messageList = messageManager.GetListSendbox();
             return View(messageList);
+        }
+        public ActionResult GetInboxMessagetDetails(int id)
+        {
+            var Values = messageManager.GetById(id);
+            return View(Values);
         }
         [HttpGet]
         public ActionResult NewMessage()
@@ -35,16 +41,34 @@ namespace MvcProjeKampi.WebUI.Controllers
         public ActionResult NewMessage(Message model, string button)
         {
             ValidationResult results = new ValidationResult();
-            if (button == "draft")
+            if (button == "add")
             {
-
-                results = messageValidator.Validate(model);
                 if (results.IsValid)
                 {
-                    model.MessageDate = DateTime.Now;
-                    model.SenderMail = "evren@evren.com";
-                    model.isDraft = true;
-                    mc.MessageAddBL(model);
+                    model.SenderMail = "admin@gmail.com";
+                    model.IsDraft = false;
+                    model.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(model);
+                    return RedirectToAction("Sendbox");
+                }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+
+            else if (button == "draft")
+            {
+                if (results.IsValid)
+                {
+
+                    model.SenderMail = "admin@gmail.com";
+                    model.IsDraft = true;
+                    model.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(model);
                     return RedirectToAction("Draft");
                 }
                 else
@@ -55,26 +79,66 @@ namespace MvcProjeKampi.WebUI.Controllers
                     }
                 }
             }
-            else if (button == "save")
+            else if (button == "cancel")
             {
-                results = messageValidator.Validate(model);
-                if (results.IsValid)
-                {
-                    model.MessageDate = DateTime.Now;
-                    model.SenderMail = "admin@gmail.com";
-                    model.isDraft = false;
-                    mc.MessageAddBL(model);
-                    return RedirectToAction("SendBox");
-                }
-                else
-                {
-                    foreach (var item in results.Errors)
-                    {
-                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                    }
-                }
+                return RedirectToAction("NewMessage");
             }
+
             return View();
+        }
+        public ActionResult DeleteMessage(int id)
+        {
+            var result = messageManager.GetById(id);
+            if (result.Trash == true)
+            {
+                result.Trash = false;
+            }
+            else
+            {
+                result.Trash = true;
+            }
+            messageManager.MessageDelete(result);
+            return RedirectToAction("Inbox");
+
+        }
+
+        public ActionResult Draft()
+        {
+            var result = messageManager.IsDraft();
+            return View(result);
+        }
+
+        public ActionResult GetDraftDetails(int id)
+        {
+            var result = messageManager.GetById(id);
+            return View(result);
+        }
+
+        public ActionResult IsRead(int id)
+        {
+            var result = messageManager.GetById(id);
+            if (result.IsRead == false)
+            {
+                result.IsRead = true;
+            }
+            else
+            {
+                result.IsRead = false;
+            }
+            messageManager.MessageUpdate(result);
+            return RedirectToAction("Inbox");
+        }
+
+        public ActionResult MessageRead()
+        {
+            var result = messageManager.GetListInbox().Where(m => m.IsRead == true).ToList();
+            return View(result);
+        }
+
+        public ActionResult MessageUnRead()
+        {
+            var result = messageManager.GetAllRead();
+            return View(result);
         }
     }
 }

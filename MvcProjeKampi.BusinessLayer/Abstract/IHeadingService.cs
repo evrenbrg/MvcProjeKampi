@@ -10,8 +10,9 @@ namespace MvcProjeKampi.BusinessLayer.Abstract
     public interface IHeadingService
     {
         List<Heading> GetList();
-        void HeadingAdd(Heading heading);
+        List<Heading> GetHeadingByWriter(int id);
         Heading GetById(int id);
+        void HeadingAdd(Heading heading);
         void HeadingDelete(Heading heading);
         void HeadingUpdate(Heading heading);
     }

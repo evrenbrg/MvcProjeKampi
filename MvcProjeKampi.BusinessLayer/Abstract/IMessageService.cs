@@ -11,8 +11,10 @@ namespace MvcProjeKampi.BusinessLayer.Abstract
     {
         List<Message> GetListInbox();
         List<Message> GetListSendbox();
-        void MessageAddBL(Message message);
+        List<Message> GetAllRead();
+        List<Message> IsDraft();
         Message GetById(int id);
+        void MessageAddBL(Message message);
         void MessageDelete(Message message);
         void MessageUpdate(Message message);
     }

@@ -12,25 +12,25 @@ namespace MvcProjeKampi.WebUI.Controllers
     public class HeadingController : Controller
     {
         // GET: Heading
-        HeadingManager hm = new HeadingManager(new EfHeadingDal());
-        CategoryManager cm = new CategoryManager(new EfCategoryDal());
-        WriterManager wm = new WriterManager(new EfWriterDal());
+        HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
         public ActionResult Index()
         {
-            var headingvalues = hm.GetList();
+            var headingvalues = headingManager.GetList();
             return View(headingvalues);
         }
 
         [HttpGet]
         public ActionResult AddHeading()
         {
-            List<SelectListItem> valueCategory = (from x in cm.GetList()
+            List<SelectListItem> valueCategory = (from x in categoryManager.GetList()
                                                   select new SelectListItem
                                                   {
                                                       Text = x.CategoryName + " (CatId : " + x.CategoryID + ")",
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
-            List<SelectListItem> valueWriter = (from x in wm.GetList()
+            List<SelectListItem> valueWriter = (from x in writerManager.GetList()
                                                   select new SelectListItem
                                                   {
                                                       Text = x.WriterName + " " + x.WriterSurName,
@@ -44,19 +44,19 @@ namespace MvcProjeKampi.WebUI.Controllers
         public ActionResult AddHeading(Heading p)
         {
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            hm.HeadingAdd(p);
+            headingManager.HeadingAdd(p);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult EditHeading(int id)
         {
-            List<SelectListItem> valueCategory = (from x in cm.GetList()
+            List<SelectListItem> valueCategory = (from x in categoryManager.GetList()
                                                   select new SelectListItem
                                                   {
                                                       Text = x.CategoryName + " (CatId : " + x.CategoryID + ")",
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
-            List<SelectListItem> valueWriter = (from x in wm.GetList()
+            List<SelectListItem> valueWriter = (from x in writerManager.GetList()
                                                 select new SelectListItem
                                                 {
                                                     Text = x.WriterName + " " + x.WriterSurName,
@@ -64,20 +64,27 @@ namespace MvcProjeKampi.WebUI.Controllers
                                                 }).ToList();
             ViewBag.listboxCat = valueCategory;
             ViewBag.listboxWriter = valueWriter;
-            var headingValue = hm.GetById(id);
+            var headingValue = headingManager.GetById(id);
             return View(headingValue);
         }
         [HttpPost]
         public ActionResult EditHeading(Heading p)
         {
-            hm.HeadingUpdate(p);
+            headingManager.HeadingUpdate(p);
             return RedirectToAction("Index");
         }
         public ActionResult DeleteHeading(int id)
         {
-            var headingValue = hm.GetById(id);
-            headingValue.HeadingStatus = false;
-            hm.HeadingDelete(headingValue);
+            var result = headingManager.GetById(id);
+            if (result.HeadingStatus == true)
+            {
+                result.HeadingStatus = false;
+            }
+            else
+            {
+                result.HeadingStatus = true;
+            }
+            headingManager.HeadingDelete(result);
             return RedirectToAction("Index");
         }
     }

@@ -28,13 +28,13 @@ namespace MvcProjeKampi.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddWriter(Writer p)
+        public ActionResult AddWriter(Writer writer)
         {
 
-            ValidationResult results = validationRules.Validate(p);
+            ValidationResult results = validationRules.Validate(writer);
             if(results.IsValid)
             {
-                wm.WriterAdd(p);
+                wm.WriterAdd(writer);
                 return RedirectToAction("Index");
             }
             else
@@ -56,12 +56,12 @@ namespace MvcProjeKampi.WebUI.Controllers
         
         [HttpPost]
         
-        public ActionResult EditWriter(Writer p)
+        public ActionResult EditWriter(Writer writer)
         {
-            ValidationResult results = validationRules.Validate(p);
+            ValidationResult results = validationRules.Validate(writer);
             if (results.IsValid)
             {
-                wm.WriterUpdate(p);
+                wm.WriterUpdate(writer);
                 return RedirectToAction("Index");
             }
             else

@@ -23,6 +23,11 @@ namespace MvcProjeKampi.BusinessLayer.Concrete
             return _headingDal.Get(x => x.HeadingID == id);
         }
 
+        public List<Heading> GetHeadingByWriter(int id)
+        {
+            return _headingDal.List(x => x.WriterID == id);
+        }
+
         public List<Heading> GetList()
         {
             return _headingDal.List();

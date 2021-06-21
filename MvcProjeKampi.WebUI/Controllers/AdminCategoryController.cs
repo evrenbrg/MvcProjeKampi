@@ -1,5 +1,4 @@
 ﻿using FluentValidation.Results;
-
 using MvcProjeKampi.BusinessLayer.Concrete;
 using MvcProjeKampi.BusinessLayer.ValidationRules;
 using MvcProjeKampi.DataAccessLayer.EntityFramework;
@@ -16,10 +15,11 @@ namespace MvcProjeKampi.WebUI.Controllers
     {
         // GET: AdminCategory
 
-        CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        [Authorize(Roles = "A")]
         public ActionResult Index()
         {
-            var categoryvalues = cm.GetList();
+            var categoryvalues = categoryManager.GetList();
             return View(categoryvalues);
         }
         [HttpGet]
@@ -28,13 +28,13 @@ namespace MvcProjeKampi.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddCategory(Category p)
+        public ActionResult AddCategory(Category category)
         {
             CategoryValidator categoryValidator = new CategoryValidator();
-            ValidationResult result = categoryValidator.Validate(p);
+            ValidationResult result = categoryValidator.Validate(category);
             if(result.IsValid)
             {
-                cm.CategoryAddBL(p);
+                categoryManager.CategoryAddBL(category);
                 return RedirectToAction("Index");
             }
             else
@@ -51,21 +51,21 @@ namespace MvcProjeKampi.WebUI.Controllers
 
         public ActionResult DeleteCategory(int id)
         {
-            var categoryValue = cm.GetById(id);
-            cm.CategoryDelete(categoryValue);
+            var categoryValue = categoryManager .GetById(id);
+            categoryManager .CategoryDelete(categoryValue);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
-            var categoryValue = cm.GetById(id);
+            var categoryValue = categoryManager .GetById(id);
             return View(categoryValue);
         }
         [HttpPost]
         public ActionResult EditCategory(Category p)
         {
-            cm.CategoryUpdate(p);
+            categoryManager .CategoryUpdate(p);
             return RedirectToAction("Index");
         }
     }

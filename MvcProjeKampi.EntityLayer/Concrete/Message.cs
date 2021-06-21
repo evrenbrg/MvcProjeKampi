@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MvcProjeKampi.EntityLayer.Concrete
 {
@@ -21,9 +22,12 @@ namespace MvcProjeKampi.EntityLayer.Concrete
         [StringLength(100)]
         public string Subject { get; set; }
 
+        [AllowHtml]
         public string MessageContent { get; set; }
-
         public DateTime MessageDate { get; set; }
-        public bool isDraft { get; set; }
+        public bool IsDraft { get; set; }
+        public bool Trash { get; set; }
+        public bool IsRead { get; set; }
+        public bool Read { get; set; }
     }
 }

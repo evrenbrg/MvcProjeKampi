@@ -19,5 +19,10 @@ namespace MvcProjeKampi.BusinessLayer.ValidationRules
             RuleFor(x => x.WriterSurName).MaximumLength(50).WithMessage("Lütfen 50 karakterten fazla değer  girişi yapmayın");
             RuleFor(x => x.WriterTitle).MinimumLength(10).WithMessage("Lütfen en az 10 karaktert girişi yapın");
         }
+        private bool AboutContains(string arg)
+        {
+            return arg.ToLower().Contains("a");
+
+        }
     }
 }

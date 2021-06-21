@@ -18,6 +18,11 @@ namespace MvcProjeKampi.BusinessLayer.Concrete
             _messageDal = messageDal;
         }
 
+        public List<Message> GetAllRead()
+        {
+            return _messageDal.List(x => x.ReceiverMail == "admin@gail.com").Where(x => x.IsRead == false).ToList();
+        }
+
         public Message GetById(int id)
         {
             throw new NotImplementedException();
@@ -31,6 +36,11 @@ namespace MvcProjeKampi.BusinessLayer.Concrete
         public List<Message> GetListSendbox()
         {
             return _messageDal.List(x => x.SenderMail == "evren@evren.com");
+        }
+
+        public List<Message> IsDraft()
+        {
+            throw new NotImplementedException();
         }
 
         public void MessageAddBL(Message message)

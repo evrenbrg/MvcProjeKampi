@@ -43,6 +43,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,12 +55,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\About.cs" />
+    <Compile Include="Concrete\Admin.cs" />
     <Compile Include="Concrete\Category.cs" />
     <Compile Include="Concrete\Contact.cs" />
     <Compile Include="Concrete\Content.cs" />
     <Compile Include="Concrete\Heading.cs" />
+    <Compile Include="Concrete\ImageFile.cs" />
     <Compile Include="Concrete\Message.cs" />
+    <Compile Include="Concrete\Talent.cs" />
     <Compile Include="Concrete\Writer.cs" />
+    <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="Dto\WriterLoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

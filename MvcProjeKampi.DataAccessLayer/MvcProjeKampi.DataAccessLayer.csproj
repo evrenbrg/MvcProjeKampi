@@ -52,24 +52,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAboutDal.cs" />
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
     <Compile Include="Abstract\IHeadingDal.cs" />
+    <Compile Include="Abstract\IImageFileDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\ITalentDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\CategoryRepository.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
-    <Compile Include="Concrete\Repositories\HeadingRepository.cs" />
-    <Compile Include="Concrete\Repositories\WriterRepository.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfContentDal.cs" />
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
+    <Compile Include="EntityFramework\EfImageFileDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfTalentDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202104281004061_mig01.cs" />
     <Compile Include="Migrations\202104281004061_mig01.designer.cs">
@@ -110,6 +114,14 @@
     <Compile Include="Migrations\202106070541241_contactdate.cs" />
     <Compile Include="Migrations\202106070541241_contactdate.designer.cs">
       <DependentUpon>202106070541241_contactdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106152321328_yeniler.cs" />
+    <Compile Include="Migrations\202106152321328_yeniler.designer.cs">
+      <DependentUpon>202106152321328_yeniler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106211918229_yenilikler.cs" />
+    <Compile Include="Migrations\202106211918229_yenilikler.designer.cs">
+      <DependentUpon>202106211918229_yenilikler.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,6 +166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106070541241_contactdate.resx">
       <DependentUpon>202106070541241_contactdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106152321328_yeniler.resx">
+      <DependentUpon>202106152321328_yeniler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106211918229_yenilikler.resx">
+      <DependentUpon>202106211918229_yenilikler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
