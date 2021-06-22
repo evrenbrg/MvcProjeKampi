@@ -1,10 +1,10 @@
 ﻿@using MvcProjeKampi.EntityLayer.Concrete
 @model List<ImageFile>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+
+
 
 <!DOCTYPE html>
 <html>
@@ -26,49 +26,30 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
-
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Sözlük Galerisi</h1>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <div class="card-title ">
-                                Galeri
-                            </div>
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Lightbox
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach (var item in Model)
-                                {
-                                    <div class="col-sm-2">
-                                        <a href="@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
-                                            <img src="@item.ImagePath" class="img-fluid mb-2" alt="white sample" />
-                                        </a>
-                                    </div>
-                                }
-
-                            </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                <div class="col-sm-2">
+                    <a href="~/AdminLTE-3.0.4/images/@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
+                        <img src="~/AdminLTE-3.0.4/images/@item.ImagePath" class="img-fluid mb-2" alt="white sample" />
+                    </a>
+                </div>}
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
-    <!-- /.content-wrapper -->
-    <!-- /.control-sidebar -->
     <!-- ./wrapper -->
     <!-- jQuery -->
     <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
@@ -77,13 +58,9 @@
     <!-- jQuery UI -->
     <script src="~/AdminLTE-3.0.4/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Ekko Lightbox -->
-    <script src="~/AdminLTE-3.0.4/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
     <!-- Filterizr-->
-    <script src="~/AdminLTE-3.0.4/plugins/filterizr/jquery.filterizr.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function () {
@@ -99,6 +76,7 @@
                 $('.btn[data-filter]').removeClass('active');
                 $(this).addClass('active');
             });
-        })</script>
+        })
+    </script>
 </body>
 </html>

@@ -28,6 +28,7 @@ namespace MvcProjeKampi.BusinessLayer.Utilities.Hashing
             }
         }
 
+
         public static bool WriterVerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))

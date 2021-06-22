@@ -16,18 +16,17 @@
         <th>Oran</th>
         <th>Güncelle</th>
         <th>Sil</th>
-        
+
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <th>@item.TalentName</th>
-            <td>@item.Range</td>
-            <td><a href="/Talent/UpdateTalent/@item.TalentID" class="btn btn-outline-danger">Güncelle</a></td>
-            <td><a href="/Talent/DeleteTalent/@item.TalentID" class="btn btn-outline-warning">Sil</a></td>
-        </tr>
-    }
+<tr>
+    <th>@item.TalentName</th>
+    <td>@item.Range</td>
+    <td><a href="/Talent/UpdateTalent/@item.TalentId" class="btn btn-outline-danger">Güncelle</a></td>
+    <td><a href="/Talent/DeleteTalent/@item.TalentId" class="btn btn-outline-warning">Sil</a></td>
+</tr>}
 
 
 </table>
